@@ -24,6 +24,7 @@
     "update-libdefs": "yarn install && rm -rf flow-typed/npm/ && flow-typed update"
   },
   "dependencies": {
+    "@apollo/client": "^3.4.16",
     "@expo/react-native-action-sheet": "^3.8.0",
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/cameraroll": "chrisbobbe/react-native-cameraroll#17fa5d8d2",
@@ -45,8 +46,10 @@
     "expo-application": "^3.2.0",
     "expo-screen-orientation": "^3.3.0",
     "expo-web-browser": "^9.1.0",
+    "graphql": "^15.6.1",
     "immutable": "^4.0.0-rc.12",
     "invariant": "^2.2.4",
+    "isomorphic-unfetch": "^3.1.0",
     "katex": "^0.11.1",
     "lodash.escape": "^4.0.1",
     "lodash.isequal": "^4.4.0",
@@ -79,6 +82,8 @@
     "redux-thunk": "^2.1.0",
     "reselect": "^4.0.0",
     "rn-fetch-blob": "^0.11.0",
+    "subscriptions-transport-ws": "^0.9.19",
+    "tailwind-react-native-classnames": "^1.5.1",
     "timezone": "^1.0.13",
     "zulip-markdown-parser": "^1.0.6"
   },

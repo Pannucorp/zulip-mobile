@@ -23,7 +23,7 @@ export default (args: {|
       // Just go to the realm screen and have the user type out the
       // realm.
       return {
-        initialRouteName: 'realm-input',
+        initialRouteName: 'welcome',
         initialRouteParams: { initial: true },
       };
     }

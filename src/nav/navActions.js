@@ -130,3 +130,6 @@ export const navigateToUserStatus = (): GenericNavigationAction => StackActions.
 
 export const navigateToSharing = (sharedData: SharedData): GenericNavigationAction =>
   StackActions.push('sharing', { sharedData });
+
+export const navigateToWelcomeScreen = (): GenericNavigationAction =>
+  StackActions.push('welcome', { initial: undefined });

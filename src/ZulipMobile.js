@@ -6,6 +6,7 @@ import 'react-native-url-polyfill/auto';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 // $FlowFixMe[untyped-import]
 import { ActionSheetProvider } from '@expo/react-native-action-sheet';
+import { ApolloProvider } from '@apollo/client';
 
 import RootErrorBoundary from './RootErrorBoundary';
 import { BRAND_COLOR } from './styles';
@@ -19,6 +20,9 @@ import AppEventHandlers from './boot/AppEventHandlers';
 import AppDataFetcher from './boot/AppDataFetcher';
 import { initializeSentry } from './sentry';
 import FullScreenLoading from './common/FullScreenLoading';
+import { createApolloClient } from './api/strapi';
+
+const apolloClient = createApolloClient();
 
 initializeSentry();
 
@@ -40,29 +44,31 @@ if (Platform.OS === 'android') {
 export default (): Node => (
   <RootErrorBoundary>
     <CompatibilityChecker>
-      <StoreProvider>
-        <SafeAreaProvider
-          style={{
-            // While waiting for the safe-area insets, this will
-            // show. Best for it not to be a white flicker.
-            backgroundColor: BRAND_COLOR,
-          }}
-        >
-          <HideIfNotHydrated PlaceholderComponent={FullScreenLoading}>
-            <AppEventHandlers>
-              <AppDataFetcher>
-                <TranslationProvider>
-                  <ThemeProvider>
-                    <ActionSheetProvider>
-                      <ZulipNavigationContainer />
-                    </ActionSheetProvider>
-                  </ThemeProvider>
-                </TranslationProvider>
-              </AppDataFetcher>
-            </AppEventHandlers>
-          </HideIfNotHydrated>
-        </SafeAreaProvider>
-      </StoreProvider>
+      <ApolloProvider client={apolloClient}>
+        <StoreProvider>
+          <SafeAreaProvider
+            style={{
+              // While waiting for the safe-area insets, this will
+              // show. Best for it not to be a white flicker.
+              backgroundColor: BRAND_COLOR,
+            }}
+          >
+            <HideIfNotHydrated PlaceholderComponent={FullScreenLoading}>
+              <AppEventHandlers>
+                <AppDataFetcher>
+                  <TranslationProvider>
+                    <ThemeProvider>
+                      <ActionSheetProvider>
+                        <ZulipNavigationContainer />
+                      </ActionSheetProvider>
+                    </ThemeProvider>
+                  </TranslationProvider>
+                </AppDataFetcher>
+              </AppEventHandlers>
+            </HideIfNotHydrated>
+          </SafeAreaProvider>
+        </StoreProvider>
+      </ApolloProvider>
     </CompatibilityChecker>
   </RootErrorBoundary>
 );

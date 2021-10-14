@@ -44,6 +44,7 @@ import LegalScreen from '../settings/LegalScreen';
 import UserStatusScreen from '../user-status/UserStatusScreen';
 import SharingScreen from '../sharing/SharingScreen';
 import { useHaveServerDataGate } from '../withHaveServerDataGate';
+import WelcomeScreen from '../pannucorp/WelcomeScreen';
 
 export type AppNavigatorParamList = {|
   'account-pick': RouteParamsOf<typeof AccountPickScreen>,
@@ -76,6 +77,7 @@ export type AppNavigatorParamList = {|
   legal: RouteParamsOf<typeof LegalScreen>,
   'user-status': RouteParamsOf<typeof UserStatusScreen>,
   sharing: RouteParamsOf<typeof SharingScreen>,
+  welcome: RouteParamsOf<typeof WelcomeScreen>,
 |};
 
 export type AppNavigationProp<
@@ -156,6 +158,7 @@ export default function AppNavigator(props: Props): Node {
         initialParams={initialRouteName === 'realm-input' ? initialRouteParams : undefined}
       />
       <Stack.Screen name="sharing" component={SharingScreen} />
+      <Stack.Screen name="welcome" component={WelcomeScreen} />
     </Stack.Navigator>
   );
 }
